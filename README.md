@@ -1,1 +1,2 @@
-# Javascript_projects_learning
+# Javascript projects learning
+### 1. Pig Game
