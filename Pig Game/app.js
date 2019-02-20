@@ -11,10 +11,10 @@ GAME RULES:
 
 let activePlayer = 0, dice, playerScores = [0,0], roundScore = 0, i = 0 ,previousRoll = 0;; 
 let diceImage = document.querySelector('.dice');
-let playerScore,gamePlaying = true;
+let playerScore , gamePlaying , target;
 
 const roll = () =>{
-	if(gamePlaying){
+	if(gamePlaying && target){
 		let currentScore = document.querySelector('#current-' + activePlayer);
 		diceImage.style.display = 'block';
 		dice = Math.floor(Math.random()*6)+1; 
@@ -64,18 +64,18 @@ const roll = () =>{
 			}
 		
 	}
-	else alert('Start a new game');
+	else alert('1. Start a new game\n2. Enter target score');
 }
 
 const hold = () =>{
-	if(gamePlaying){
+	if(gamePlaying && target){
 		diceImage.style.display = 'none';
 		let currentScore = document.querySelector('#current-' + activePlayer);
 		currentScore.textContent = 0;
 		playerScores[i] = playerScores[i] + roundScore;
 		roundScore = 0;
 		playerScore = document.querySelector('#score-' + activePlayer);
-		if(playerScores[i]>=100)
+		if(playerScores[i]>=target)
 		{
 				playerScore.textContent = 'Winner!';
 				gamePlaying = false;
@@ -95,10 +95,10 @@ const hold = () =>{
 		document.querySelector('.player-1-panel').classList.toggle('active');
 		previousRoll = 0;
 		}
-		else alert('Start a new game');
+		else alert('1. Start a new game\n2. Enter target score');
 }
 
-let newGame = () => {
+const newGame = () => {
 	gamePlaying = true;
 	activePlayer = 0;
 	playerScores = [0,0];
@@ -116,17 +116,30 @@ let newGame = () => {
 	document.querySelector('.player-0-panel').classList.remove('active');
 	document.querySelector('.player-1-panel').classList.remove('active');
 	document.querySelector('.player-0-panel').classList.add('active');
-
+	document.getElementById('setScore').style.display = '';
+	document.getElementById('btn-score').style.display = '';
+	document.getElementById('setScore').value = '';
+	target = 0;
+	
 }
+
+const setScore = () => {
+	let scoRe = document.getElementById('setScore');
+	target = scoRe.value;
+	scoRe.style.display = 'none';
+	document.getElementById('btn-score').style.display = 'none';
+} 
 
 newGame();
 diceImage.style.display = 'none';
 let rollButton = document.querySelector('.btn-roll');
 let holdButton = document.querySelector('.btn-hold');
-let newGameButton = document.querySelector('.btn-new')
+let newGameButton = document.querySelector('.btn-new');
+let setScoreButton = document.getElementById('btn-score');
 rollButton.addEventListener("click",roll);
 holdButton.addEventListener("click",hold);
 newGameButton.addEventListener("click",newGame);
+setScoreButton.addEventListener("click",setScore);
 
 
 

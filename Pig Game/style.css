@@ -152,3 +152,18 @@ i {
 
 .winner { background-color: #f7f7f7; }
 .winner .player-name { font-weight: 300; color: #EB4D4D; }
+
+.setScores{
+    margin-top: 10px;
+    margin-bottom: 25px; 
+    text-align: center; 
+}
+
+.textField {
+    padding: 10px;
+    text-align: center;
+}
+.btnScore {
+    padding: 10px 30px 10px 30px;
+
+}
