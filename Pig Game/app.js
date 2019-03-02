@@ -19,21 +19,8 @@ const roll = () =>{
 		diceImage.style.display = 'block';
 		dice = Math.floor(Math.random()*6)+1; 
 		console.log(dice);
-		switch(dice){
-			case 1: diceImage.src="dice-1.png";
-					  break;
-			case 2: diceImage.src="dice-2.png";
-					  break;
-			case 3: diceImage.src="dice-3.png";
-					  break;
-			case 4: diceImage.src="dice-4.png";
-					  break;
-			case 5: diceImage.src="dice-5.png";
-					  break;
-			case 6: diceImage.src="dice-6.png";
-					  break;
-		};
-	
+		diceImage.src= "dice-" + dice + ".png";
+
 		if(dice === 1){
 					diceImage.style.display = 'none';
 					roundScore = 0;
@@ -109,6 +96,7 @@ const newGame = () => {
 	let currentScore1 = document.querySelector('#current-1');
 	let playerScore0 = document.querySelector('#score-0');
 	let playerScore1 = document.querySelector('#score-1');
+	let targetScore = document.querySelector('.targetScore');
 	currentScore0.textContent = 0;
 	currentScore1.textContent = 0;
 	playerScore0.textContent = 0;
@@ -119,15 +107,19 @@ const newGame = () => {
 	document.getElementById('setScore').style.display = '';
 	document.getElementById('btn-score').style.display = '';
 	document.getElementById('setScore').value = '';
+	targetScore.textContent = '';
 	target = 0;
-	
 }
 
 const setScore = () => {
 	let scoRe = document.getElementById('setScore');
+	let Display = document.querySelector('body');
+	let targetScore = document.querySelector('.targetScore');
 	target = scoRe.value;
 	scoRe.style.display = 'none';
 	document.getElementById('btn-score').style.display = 'none';
+	Display.style.background = 'linear-gradient(rgba(62, 20, 20, 0.4), rgba(62, 20, 20, 0.4)), url(back.jpg)'
+	targetScore.textContent ='Target Score = ' + target;
 } 
 
 newGame();
